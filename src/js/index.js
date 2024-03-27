@@ -21,10 +21,10 @@ let counter = 0;
 //render your react application
 
 setInterval(() => {
-    const FOUR = Math.floor(counter/1000);
-    const THREE = Math.floor(counter/100);
-    const TWO = Math.floor(counter/10);
-    const ONE = Math.floor(counter/1);
+    const FOUR = parseInt(Math.floor(counter/1000));
+    const THREE = parseInt(Math.floor(counter/100));
+    const TWO = parseInt(Math.floor(counter/10));
+    const ONE = parseInt(Math.floor(counter/1));
        counter++;
 
     ReactDOM.render(<Home digitOne = {ONE}  digitTwo = {TWO} digitThree = {THREE} digitFour = {FOUR}/>, document.querySelector("#app"));
