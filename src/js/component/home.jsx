@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Counter from "../component/Counter";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+const Home = () => {
+	const [counter, setCounter] = useState(0);
 
-//create your first component
-const Home = (props) => {
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCounter((prevCounter) => prevCounter + 1);
+		}, 1000);
+
+
+		return () => clearInterval(intervalId);
+	}, []);
+
+	const FOUR = parseInt(Math.floor(counter / 1000));
+	const THREE = parseInt(Math.floor((counter % 1000) / 100));
+	const TWO = parseInt(Math.floor((counter % 100) / 10));
+	const ONE = parseInt(Math.floor(counter % 10));
+
 	return (
 		<div className="container">
-			<div className="row">
-				<div className="shadow-sm col border bg-light border rounded mx-1 d-flex flex-column justify-content-center align-items-center text-center" style={{ height: "300px" }}><i class="fas fa-clock"></i></div>
-				<div className="shadow-sm col border bg-light border rounded mx-1 d-flex flex-column justify-content-center align-items-center text-center" style={{ height: "300px" }}>{props.digitFour % 10}</div>
-				<div className="shadow-sm col border bg-light border rounded mx-1 d-flex flex-column justify-content-center align-items-center text-center" style={{ height: "300px" }}>{props.digitThree % 10}</div>
-				<div className="shadow-sm col border bg-light border rounded mx-1 d-flex flex-column justify-content-center align-items-center text-center" style={{ height: "300px" }}>{props.digitTwo % 10}</div>
-				<div className="shadow-sm col border bg-light border rounded mx-1 d-flex flex-column justify-content-center align-items-center text-center" style={{ height: "300px" }}>{props.digitOne % 10}</div>
-
+			<div className="row text-center">
+				<div className="col"></div>
+				<div className="col">D</div>
+				<div className="col">H</div>
+				<div className="col">M</div>
+				<div className="col">S</div>
 			</div>
+			<Counter
+				digitOne={ONE}
+				digitTwo={TWO}
+				digitThree={THREE}
+				digitFour={FOUR}
+			/>
 		</div>
 	);
 };
